@@ -1,3 +1,4 @@
-@include('header')
-<h1 class="font-bold text-xl text-center">Hoome Page</h1>
-@include('footer')
+@extends('layout')
+@section('dynamicContent')
+<h1 class="font-bold text-xl text-center">Home Page</h1>
+@endsection
