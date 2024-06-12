@@ -1,3 +1,9 @@
+@php
+    $a = ['fast', 'second', 'thred', 'four', 'five', 'six'];
+
+@endphp
+
+
 @extends('layout')
 @section('dynamicContent')
 <h1 class="font-bold text-xl text-center">Contact Page</h1>
@@ -9,3 +15,12 @@
 @section('title')
     Contact
 @endsection
+
+
+<script>
+
+// const data = @json($a);
+const data = {{ Js::from($a) }};
+console.log(data);
+
+</script>
