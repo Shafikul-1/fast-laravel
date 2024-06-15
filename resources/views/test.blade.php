@@ -1,0 +1,1 @@
+<h1>Test blade php file</h1>

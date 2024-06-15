@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\invoController;
+use App\Http\Controllers\testController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 
@@ -13,3 +14,5 @@ Route::controller(userController::class)->group(function () {
 });
 
 Route::get('/invo', invoController::class);
+
+Route::get('/test', [testController::class, 'testing'] );
