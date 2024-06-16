@@ -58,8 +58,9 @@
                         <td class="px-6 py-4">
                             {{$value->roll}}
                         </td>
-                        <td class="px-6 py-4 text-right">
+                        <td class="px-6 py-4 text-right flex justify-between gap-3">
                             <a href="{{route('singleuser',$value->id )}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">view</a>
+                            <a href="{{route('delete',$value->id )}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">delete</a>
                         </td> 
                     </tr>
                 @endforeach
