@@ -1,18 +1,12 @@
 <?php
 
-use App\Http\Controllers\invoController;
-use App\Http\Controllers\testController;
+use App\Http\Controllers\homeController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\userController;
 
-// Route::get('/', [userController::class, 'user'])->name('home');
-// Route::get('/user/{name?}', [userController::class, 'show'])->name('show');
 
-Route::controller(userController::class)->group(function () {
-    Route::get('/',  'user')->name('home');
-    Route::get('/user/{name?}', 'show')->name('show');
-});
+Route::get('/', [homeController::class, 'home'])->name('home');
+Route::get('/show', [StudentController::class, 'showStudent'])->name('alluser');
+Route::get('/show/{id?}', [StudentController::class, 'singleStudent'])->name('singleuser');
+// Route::view('/show', 'allData');
 
-Route::get('/invo', invoController::class);
-
-Route::get('/test', [testController::class, 'testing'] );
