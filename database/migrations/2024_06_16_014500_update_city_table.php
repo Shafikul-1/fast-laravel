@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('product', function (Blueprint $table) {
-            $table->dropColumn('product_name');
-            $table->string('product_img', 600)->default('product image')->change();
+        Schema::table('city', function (Blueprint $table) {
+            $table->dropForeign(['users_id']);
         });
     }
 
@@ -26,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('proudct', function (Blueprint $table) {
+        Schema::table('city', function (Blueprint $table) {
             //
         });
     }
