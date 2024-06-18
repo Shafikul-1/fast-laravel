@@ -25,7 +25,7 @@ class StudentController extends Controller
     {
         $student = DB::table('students')->where('id', $id)->delete();
         if ($student) {
-            echo "<h3>delete successful</h3>";
+            return redirect()->route('alluser');
         } else {
             echo "<h3>delete not delete successful</h3>";
         }
