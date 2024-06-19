@@ -36,6 +36,9 @@
                     <th scope="col" class="px-6 py-3">
                         number
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        city
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -61,11 +64,14 @@
                         <td class="px-6 py-4">
                             {{ $value->phone }}
                         </td>
+                        <td class="px-6 py-4">
+                            {{ $value->city_name }}
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        {{ $data->links() }}
+        {{-- {{ $data->links() }} --}}
     </div>
 
 </body>
