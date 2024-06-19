@@ -53,4 +53,22 @@ class userController extends Controller
         return $user;
         // return view('viewfile', ['data' => $user]);
     }
+
+    public function chunkData()
+    {
+        $user = DB::table('users')
+            ->orderBy('id')
+            ->chunk(5, function ($chunkUser) {
+
+                echo "<div style='border: 5px solid red; margin: 6px 0;'>";
+                foreach ($chunkUser as $value) {
+                    echo "<div style='border: 2px solid green; margin: 6px 10px;'>" . $value->name . "</div>";
+                }
+                echo "</div>";
+                // return view('viewfile', ['data' => $chunkUser]);        
+
+            });
+        // ->get();
+
+    }
 }
