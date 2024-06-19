@@ -6,4 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [userController::class, 'getData']);
 
-Route::get('/latuchers', [userController::class, 'unionData']);
+Route::get('/union', [userController::class, 'unionData']);
+
+Route::get('/when', [userController::class, 'whenData']);

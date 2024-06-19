@@ -38,4 +38,19 @@ class userController extends Controller
         return $second;
         // return view('viewfile', ['data' => $second]);
     }
+
+    public function whenData()
+    {
+        $user = DB::table('users')
+            ->when(false, function ($query) {
+                $query->where('age', '>', '30');
+            }, function ($query) {
+                $query->where('age', '<', '30');
+            })
+            ->get();
+
+
+        return $user;
+        // return view('viewfile', ['data' => $user]);
+    }
 }
