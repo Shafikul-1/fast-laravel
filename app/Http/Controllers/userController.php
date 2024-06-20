@@ -17,4 +17,19 @@ class userController extends Controller
 
     //    return view('viewfile', compact('user'));
     }
+
+    public function insertData() {
+        $user = DB::insert("INSERT INTO users (name, email, age, city) VALUE (?, ?, ?, ?)", ['shafikul', 'shafikul@gmail.com', 34, 2]);
+        return $user;
+    }
+
+    public function updateData() {
+        $user = DB::update("UPDATE users SET name = 'Shaifkul Islam Test' WHERE id = ?", [4]);
+        return $user;
+    }
+
+    public function deleteData() {
+        $user = DB::delete("DELETE FROM users WHERE id = ?", [4]);
+        return $user;
+    }
 }
