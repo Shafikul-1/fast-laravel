@@ -7,29 +7,18 @@ use Illuminate\Support\Facades\DB;
 
 class userController extends Controller
 {
-    public function getData() {
-    //    $user = DB::select("SELECT * FROM users WHERE name LIKE ?", ["d%"]);
-    
-    //    $user = DB::select("SELECT * FROM users WHERE name LIKE ? AND age < ?", ["d%", 11]);
+    public function vald(Request $req) {
+        $res = $req->validate([
+            'fname' => 'required',
+            'lname' => 'required',
+            'number' => 'required|numeric|size:11',
+            'email' => 'required|email',
+            'pass' => 'required|alpha_num',
+            'country' => 'required',
+        ], [
+            'country.required' => 'Must be country num added'
+        ]);
 
-       $user = DB::select("SELECT * FROM users WHERE id = :id ", ['id' => 8]); // WHERE id = 👉:id  AND  [👉'id' => 8] duel word same requred
-       return $user;
-
-    //    return view('viewfile', compact('user'));
-    }
-
-    public function insertData() {
-        $user = DB::insert("INSERT INTO users (name, email, age, city) VALUE (?, ?, ?, ?)", ['shafikul', 'shafikul@gmail.com', 34, 2]);
-        return $user;
-    }
-
-    public function updateData() {
-        $user = DB::update("UPDATE users SET name = 'Shaifkul Islam Test' WHERE id = ?", [4]);
-        return $user;
-    }
-
-    public function deleteData() {
-        $user = DB::delete("DELETE FROM users WHERE id = ?", [4]);
-        return $user;
+        return $req;
     }
 }

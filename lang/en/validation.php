@@ -163,8 +163,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'required' => 'Email is requred must be (validation.php file thake astece)',
+        ],
+        'fname' => [
+            'required' => 'must be added first name (validation.php file thake astece)'
         ],
     ],
 
@@ -179,6 +182,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'lname' => '(Las Name) validation.php file thake astece'
+    ],
 
 ];
