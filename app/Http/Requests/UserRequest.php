@@ -2,9 +2,12 @@
 
 namespace App\Http\Requests;
 
+
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Validator;
+use App\Rules\Uppercase;
+use Closure;
 class UserRequest extends FormRequest
 {
     /**
@@ -25,8 +28,16 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'fname' => 'required|string',
-            'lname' => 'required',
+            'fname' => ['required', function (string $attribute, mixed $value, Closure $fail) {
+
+                // INPUT VALUE PRINIT TARMINAL
+                 error_log("Validating value: " . $value); // Log the value
+
+                if (strtoupper($value) !== $value) {
+                    $fail('This :attribute value is not uppercase, please upppercase all value');
+                }
+            }],
+            'lname' => ['required', new Uppercase],
             'number' => 'required|digits:11',
             'email' => 'required|email',
             'pass' => 'required|alpha_num',
@@ -51,13 +62,13 @@ class UserRequest extends FormRequest
         ];
     }
 
-    protected function prepareForValidation() :void
-    {
-        $this->merge([
-            // 'fname' => strtoupper($this->fname),
-            'fname' => Str::slug($this->fname),
-        ]);
-    }
+    // protected function prepareForValidation() :void
+    // {
+    //     $this->merge([
+    //         // 'fname' => strtoupper($this->fname),
+    //         'fname' => Str::slug($this->fname),
+    //     ]);
+    // }
 
     protected $stopOnFirstFailure = true;
 }

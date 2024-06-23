@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Closure;
 
 class userController extends Controller
 {
-    public function vald(UserRequest $req) {
+    public function vald(UserRequest $req)
+    {
+        return $req->all();
+
         // $res = $req->validate([
         //     'fname' => 'required',
         //     'lname' => 'required',
@@ -20,8 +25,7 @@ class userController extends Controller
         //     'country.required' => 'Must be country num added'
         // ]);
 
-        // return $req->all();
         // return $req->only(['fname', 'lname']);
-        return $req->except(['fname', 'lname']);
+        // return $req->except(['fname', 'lname']);
     }
 }
