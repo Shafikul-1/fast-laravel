@@ -16,6 +16,9 @@
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        id
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Product name
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -34,7 +37,8 @@
             </thead>
             <tbody>
                 @foreach ($allData as $key => $value)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <tr
+                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="w-4 p-4">
                             <div class="flex items-center">
                                 <input id="checkbox-table-search-1" type="checkbox"
@@ -43,19 +47,32 @@
                             </div>
                         </td>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{$value->name}}
+                            {{ $value->id }}
+                        </th>
+                        <th class="px-6 py-4">
+                            {{ $value->name }}
                         </th>
                         <td class="px-6 py-4">
-                            {{$value->color}}
+                            {{ $value->color }}
                         </td>
                         <td class="px-6 py-4">
-                            {{$value->price}}
+                            {{ $value->price }}
                         </td>
                         <td class="px-6 py-4">
-                             {{$value->description}}
+                            {{ $value->description }}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <div class="flex justify-between gap-3">
+                                <a href="{{ route('viewProduct', $value->id) }}"><i class="fa-solid fa-eye"></i></a>
+                                <form action="{{ route('deleteProduct', $value->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" style="background: none; border: none; cursor: pointer;">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                                <a href="{{ route('editProduct', $value->id) }}"><i class="fa-solid fa-pen"></i></a>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
