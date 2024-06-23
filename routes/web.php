@@ -5,8 +5,7 @@ use App\Http\Controllers\productController;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'form');
 
-Route::resource('product', productController::class);
-
-Route::resource('product.comment', commentController::class)->shallow();
+Route::resource('product', productController::class)->names([
+    'create' => 'home',
+]);

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class productController extends Controller
 {
@@ -13,7 +15,18 @@ class productController extends Controller
      */
     public function index()
     {
-        echo "resource controller index method";
+        // 👉 DB query builder niyon a
+        // $allData = DB::table('products')->get();
+
+        // 👉 Elecond ORM niyon a 
+        // $allData = product::all();
+        // $allData = product::find([2, 4, 9], ['name', 'price']);
+        // $allData = product::min('price');
+        $allData = product::whereRaw('price<?', [30])->get();
+        // return $allData;
+
+
+        return view('home', compact('allData'));
     }
 
     /**
@@ -23,7 +36,7 @@ class productController extends Controller
      */
     public function create()
     {
-        echo "resource controller create method";
+        return view('form');
     }
 
     /**
