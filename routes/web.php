@@ -9,3 +9,4 @@ Route::view('/', 'form');
 
 Route::resource('product', productController::class);
 
+Route::resource('product.comment', commentController::class)->shallow();
