@@ -19,7 +19,7 @@ class StudentFactory extends Factory
         return [
             'name' => fake()->name(),
             'eamil' => fake()->unique()->email(),
-            // 'age' => fake()->numberBetween(0, 50)
+            'age' => fake()->numberBetween(0, 50)
         ];
     }
 }

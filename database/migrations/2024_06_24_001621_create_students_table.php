@@ -20,6 +20,16 @@ return new class extends Migration
             $table->integer('age');
             $table->timestamps();
         });
+
+        Schema::create('details', function (Blueprint $table){
+            $table->id();
+            $table->string('city', 300);
+            $table->integer('roll');
+            $table->integer('card')->unique();
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
