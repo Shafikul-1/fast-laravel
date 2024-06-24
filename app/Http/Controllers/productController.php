@@ -18,7 +18,7 @@ class productController extends Controller
     {
         // 👉 DB query builder niyon a
         // $allData = DB::table('products')->get();
-        $allData = product::orderByDesc('id')->get();
+        $allData = product::orderByDesc('id')->Paginate(4);
 
         // 👉 Elecond ORM niyon a 
         // $allData = product::all();
@@ -87,7 +87,7 @@ class productController extends Controller
     public function show($id)
     {
         // $datas = product::whereRaw("id = $id")->get();  //👉 return json object
-        $datas = product::find($id); // 👉 return single object
+        $datas = product::findOrFail($id); // 👉 return single object
 
         // return $datas;
         return view('viewProduct', compact('datas'));
@@ -101,7 +101,7 @@ class productController extends Controller
      */
     public function edit($id)
     {
-        $datas = product::find($id);
+        $datas = product::findorfail($id);
         return view('edit', compact('datas'));
     }
 
