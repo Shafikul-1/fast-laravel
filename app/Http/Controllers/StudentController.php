@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
 
-class commentController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class commentController extends Controller
      */
     public function index()
     {
-        echo "Comment controller index method";
+        $studentData = Student::all();
+        return $studentData;
     }
 
     /**
@@ -23,7 +25,7 @@ class commentController extends Controller
      */
     public function create()
     {
-        echo "Comment controller create  method";
+        //
     }
 
     /**
@@ -45,7 +47,7 @@ class commentController extends Controller
      */
     public function show($id)
     {
-        echo "Comment controller show method $id method";
+        //
     }
 
     /**
