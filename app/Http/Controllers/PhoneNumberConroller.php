@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Student;
-use App\Models\Detail;
 
-class StudentController extends Controller
+class PhoneNumberConroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +13,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        // $studentData = Student::with('detail')->get();  // 👉 all data fetch onlne line
-        // $studentData = Student::with('detail')->find(1);   // 👉 all data find one
-        // echo $studentData->name . "<br>";
-        // echo $studentData->detail->city;
-
-        $studentData = Student::whereRaw('id = 2')->withWhereHas('detail', function ($query) {
-            $query->where('student_id', 2);
-        })->get();
-
-        return $studentData;
+        //
     }
 
     /**
@@ -34,16 +23,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $inset = Student::create([
-            'name' => 'md shafikul islam',
-            'age' => 44,
-            'eamil' => 'shafikul@gmail.com'
-        ]);
-        $inset->detail()->create([
-            'city' => 'mohadevpur',
-            'roll' => 34,
-            'card' => 345
-        ]);
+        //
     }
 
     /**
