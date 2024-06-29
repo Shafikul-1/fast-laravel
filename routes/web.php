@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\VideoController;
 Route::view('/', 'welcome');
-Route::resource('customer', CustomerController::class);
-Route::resource('order', OrderController::class);
-Route::resource('image', ImageController::class);
+Route::resource('post' ,PostController::class);
+Route::resource('tag',TagController::class);
+Route::resource('video',VideoController::class);

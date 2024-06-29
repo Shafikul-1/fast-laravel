@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
  */
-class OrderFactory extends Factory
+class PostFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'qty' => fake()->numberBetween(20,50),
-            'amount' => fake()->numberBetween(1000, 50000)
+            'title' => fake()->paragraph(1),
+            'description' => fake()->text()
         ];
     }
 }

@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Customer;
-use App\Models\Order;
+use App\Models\Tag;
+use App\Models\Post;
+use App\Models\Video;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +18,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    Customer::factory()->count(10)->create();
-    // Order::factory()->count(10)->create();
+        Post::factory()->count(4)->create();
+        Tag::factory()->count(7)->create();
+        Video::factory()->count(9)->create();
     }
 }

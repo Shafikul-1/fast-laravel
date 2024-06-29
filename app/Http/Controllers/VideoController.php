@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class VideoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $data = Customer::with('image')->get();
-        return $data;
+        // $getData = Video::with("tag")->get();
+        $getData = Video::with("tag")->find(2);
+        return $getData;
     }
 
     /**
@@ -25,13 +26,17 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $customers = Customer::create([
-            'name' => 'testingman',
-            'city' => 'testing city'
+        $insertData = Video::create([
+            'title' => fake()->paragraph(1),
+            'description' => fake()->text(),
+            'url' => fake()->url()
         ]);
 
-        $customers->image()->create([
-            'url' => 'testing user.jpg'
+        // added exists tag id
+        $insertData->tag()->attach([6,1,4]);
+
+        $insertData->tag()->create([
+            'tag_name' => fake()->word()
         ]);
     }
 
