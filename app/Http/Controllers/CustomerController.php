@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class PhoneNumberConroller extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class PhoneNumberConroller extends Controller
      */
     public function index()
     {
-        //
+        $data = Customer::with('image')->get();
+        return $data;
     }
 
     /**
@@ -23,7 +25,10 @@ class PhoneNumberConroller extends Controller
      */
     public function create()
     {
-        //
+        $customers = Customer::find(6);
+        $customers->image()->create([
+            'url' => 'noting.jpg'
+        ]);
     }
 
     /**

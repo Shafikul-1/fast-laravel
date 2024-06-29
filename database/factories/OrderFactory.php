@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PhoneNumber>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
  */
-class PhoneNumberFactory extends Factory
+class OrderFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class PhoneNumberFactory extends Factory
     public function definition()
     {
         return [
-            'number' => fake()->unique()->numberBetween(1000, 50000),
-            'uuid' => fake()->uuid()
+            'qty' => fake()->numberBetween(20,50),
+            'amount' => fake()->numberBetween(1000, 50000)
         ];
     }
 }

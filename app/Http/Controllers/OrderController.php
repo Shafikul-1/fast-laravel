@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
-class UserConroller extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,21 +14,7 @@ class UserConroller extends Controller
      */
     public function index()
     {
-        $users = User::with("company")->with('phoneNumber')->get();
-        foreach($users as $key => $value){
-            echo "User Name - " . $value->name . "<br>";
-            echo "User Email - " . $value->email . "<br>";
-            echo "User Number - " . $value->phoneNumber->number . "<br>";
-            echo "User Company - " . $value->company->name . "<br>";
-            echo "<hr>";
-        }
-        // echo "User Name - " . $users->name . "<br>";
-        // echo "User Email - " . $users->email . "<br>";
-        // echo "User Number - " . $users->phoneNumber->number . "<br>";
-        // echo "User Company - " . $users->company->name . "<br>";
-        // echo "<hr>";
-
-        // return $users;
+        //    
     }
 
     /**
@@ -38,7 +24,13 @@ class UserConroller extends Controller
      */
     public function create()
     {
-        //
+        $inserData = Order::create([
+            'qty' => 2,
+            'amount' => 222
+        ]);
+        $inserData->image()->create([
+            'url' => '/product/testing.jpg'
+        ]);
     }
 
     /**
