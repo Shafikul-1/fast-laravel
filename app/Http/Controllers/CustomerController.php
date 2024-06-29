@@ -25,9 +25,13 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $customers = Customer::find(6);
+        $customers = Customer::create([
+            'name' => 'testingman',
+            'city' => 'testing city'
+        ]);
+
         $customers->image()->create([
-            'url' => 'noting.jpg'
+            'url' => 'testing user.jpg'
         ]);
     }
 

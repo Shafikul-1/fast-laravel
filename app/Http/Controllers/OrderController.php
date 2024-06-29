@@ -25,11 +25,11 @@ class OrderController extends Controller
     public function create()
     {
         $inserData = Order::create([
-            'qty' => 2,
-            'amount' => 222
+            'qty' => 55,
+            'amount' => 555
         ]);
         $inserData->image()->create([
-            'url' => '/product/testing.jpg'
+            'url' => '/video/testing.mp4'
         ]);
     }
 
