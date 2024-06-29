@@ -14,7 +14,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //    
+    //    $latest = Order::with("image")->get();
+    //    $latest = Order::with("latest")->get();
+    //    $latest = Order::with("oldest")->get();
+       $latest = Order::with("low")->get();
+       return $latest;
     }
 
     /**
@@ -24,12 +28,14 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $inserData = Order::create([
-            'qty' => 55,
-            'amount' => 555
-        ]);
+        // $inserData = Order::create([
+        //     'qty' => 55,
+        //     'amount' => 555
+        // ]);
+        $inserData = Order::find(3);
+
         $inserData->image()->create([
-            'url' => '/video/testing.mp4'
+            'url' => '/video/again check.mp4'
         ]);
     }
 
