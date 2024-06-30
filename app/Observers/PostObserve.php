@@ -24,6 +24,12 @@ class PostObserve
         $post->slug = Str::slug($titles);
     }
 
+    public function updating(Post $post)
+    {
+        $titles = $post->title;
+        $post->slug = Str::slug($titles);
+    }
+
     /**
      * Handle the Post "updated" event.
      *
@@ -32,7 +38,7 @@ class PostObserve
      */
     public function updated(Post $post)
     {
-        //
+        echo "update successful";
     }
 
     /**

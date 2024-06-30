@@ -25,7 +25,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        Post::find(4)->delete();
+        // Post::find(4)->delete();
+        Post::find(5)->update([
+            'title' => "testing Update"
+        ]);
     }
 
     /**
