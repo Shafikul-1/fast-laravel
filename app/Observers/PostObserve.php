@@ -28,6 +28,7 @@ class PostObserve
     {
         $titles = $post->title;
         $post->slug = Str::slug($titles);
+        echo "updating ........";
     }
 
     /**
