@@ -43,7 +43,7 @@ class PostObserve
      */
     public function deleted(Post $post)
     {
-        //
+        $post->video()->delete();
     }
 
     /**

@@ -10,10 +10,6 @@ class Post extends Model
     use HasFactory;
     protected $guarded = [];  
     
-    public function tag() {
-        return $this->morphToMany(Tag::class, "tagable");
-    }
-    
     public function video() {
         return $this->hasMany(Video::class);
     }

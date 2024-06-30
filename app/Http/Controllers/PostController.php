@@ -25,16 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $data = Post::create([
-            'title' => fake()->paragraph(1),
-            'description' => fake()->text(),
-        ]);
-
-        $data->video()->create([
-            'title' => fake()->paragraph(1),
-            'description' => fake()->text(),
-            'url' => fake()->url()
-        ]);
+        Post::find(4)->delete();
     }
 
     /**
