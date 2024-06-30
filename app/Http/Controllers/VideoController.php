@@ -15,7 +15,8 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $getData = Video::with("post")->get();
+        // Proper way data get. ``with`not white space`` 
+        $getData = Video::with("post:title,description,id")->get(['title', 'description', 'post_id']);
         return $getData;
     }
 
