@@ -13,4 +13,8 @@ class Post extends Model
     public function tag() {
         return $this->morphToMany(Tag::class, "tagable");
     }
+    
+    public function video() {
+        return $this->hasMany(Video::class);
+    }
 }

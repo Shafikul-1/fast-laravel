@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,8 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = Post::with("tag")->get();
-        return $data;
+        $data = Post::with("video")->find(3);
+        $data->video->where('post_id', 2);
+        return  $data;
     }
 
     /**
@@ -25,15 +27,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $insertTag = Post::create([
-            'title' => fake()->paragraph(1),
-            'description' => fake()->paragraph(2)
-        ]);
-
-        //  new tag add hole auto tagabls table add hobe
-        $insertTag->tag()->create([
-            'tag_name' => fake()->word()
-        ]);
+        $data = Post::find(3)->delete();
+        Video::where('post_id', 3)->delete();
     }
 
     /**

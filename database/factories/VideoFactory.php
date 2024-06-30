@@ -19,7 +19,8 @@ class VideoFactory extends Factory
         return [
             'title' => fake()->paragraph(1),
             'description' => fake()->text(),
-            'url' => fake()->url()
+            'url' => fake()->url(),
+            'post_id' => rand(1, 7)
         ];
     }
 }
