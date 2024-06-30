@@ -14,7 +14,12 @@ class Video extends Model
         return $this->morphToMany(Tag::class, "tagable");
     }
 
+
+    // If altime other table data get then this method `['']` MULTI TABLE name array from a dite hobe
+    // protected $with = ['post'];
+
+    //  Specific Column Data Get ` ->select()` must be primary key likte hobe `id`
     public function post() {
-        return $this->hasMany(Post::class, 'id', 'post_id');
+        return $this->hasMany(Post::class, 'id', 'post_id')->select("title", "description", "id");
     }
 }
