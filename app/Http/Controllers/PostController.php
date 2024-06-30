@@ -15,7 +15,6 @@ class PostController extends Controller
     public function index()
     {
         $data = Post::with("video")->find(4);
-        $data->video->where('post_id', 2);
         return  $data;
     }
 
@@ -26,7 +25,16 @@ class PostController extends Controller
      */
     public function create()
     {
-        $data = Post::find(4)->delete();
+        $data = Post::create([
+            'title' => fake()->paragraph(1),
+            'description' => fake()->text(),
+        ]);
+
+        $data->video()->create([
+            'title' => fake()->paragraph(1),
+            'description' => fake()->text(),
+            'url' => fake()->url()
+        ]);
     }
 
     /**

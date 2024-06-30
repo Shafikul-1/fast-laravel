@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Post::factory()->count(4)->create();
+        Post::factory()->count(7)->create();
         Tag::factory()->count(7)->create();
         Video::factory()->count(9)->create();
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        // $getData = Video::with("tag")->get();
-        $getData = Video::with("tag")->find(2);
+        $getData = Video::with("post")->get();
         return $getData;
     }
 
@@ -26,17 +26,11 @@ class VideoController extends Controller
      */
     public function create()
     {
-        $insertData = Video::create([
+        Video::create([
             'title' => fake()->paragraph(1),
             'description' => fake()->text(),
-            'url' => fake()->url()
-        ]);
-
-        // added exists tag id
-        $insertData->tag()->attach([6,1,4]);
-
-        $insertData->tag()->create([
-            'tag_name' => fake()->word()
+            'url' => fake()->url(),
+            'post_id' => 4
         ]);
     }
 

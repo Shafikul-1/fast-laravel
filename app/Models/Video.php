@@ -14,4 +14,7 @@ class Video extends Model
         return $this->morphToMany(Tag::class, "tagable");
     }
 
+    public function post() {
+        return $this->hasMany(Post::class, 'id', 'post_id');
+    }
 }
