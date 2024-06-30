@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\Video;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -15,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = Post::with("video")->find(3);
+        $data = Post::with("video")->find(4);
         $data->video->where('post_id', 2);
         return  $data;
     }
@@ -27,8 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $data = Post::find(3)->delete();
-        Video::where('post_id', 3)->delete();
+        $data = Post::find(4)->delete();
     }
 
     /**
