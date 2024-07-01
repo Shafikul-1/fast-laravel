@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
-</head>
-
-<body>
+@extends('nav')
+@section('mainPage')
     <div class="mt-10"></div>
     <div
         class="bg-gray-50 text-center px-4 rounded max-w-md flex flex-col items-center justify-center cursor-pointer border-2 border-gray-400 border-dashed mx-auto font-[sans-serif]">
@@ -36,11 +26,22 @@
                 <label for="uploadFile1"
                     class="block px-6 py-2.5 rounded text-gray-600 text-sm tracking-wider font-semibold border-none outline-none cursor-pointer bg-gray-200 hover:bg-gray-100">Browse
                     Files</label>
+                <input type="text" name="name" value="{{old('name')}}" id=""><br>
+                @error('name')
+                    {{$message}}
+                @enderror
+                <input type="text" name="email" value="{{old('email')}}" id=""><br>
+                @error('email')
+                    {{$message}}
+                @enderror
+                <input type="text" name="age" value="{{old('age')}}" id=""><br>
+                @error('age')
+                    {{$message}}
+                @enderror
                 <input type="submit" value="Upload" class="mt-4 border rounded bg-gray-300 px-4 cursor-pointer">
             </form>
             <p class="text-xs text-gray-400 mt-4">PNG, JPG SVG, WEBP, and GIF are Allowed.</p>
         </div>
-    </div>
-</body>
 
-</html>
+    </div>
+@endsection

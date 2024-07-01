@@ -16,6 +16,7 @@ class UploadController extends Controller
     {
         $data = Upload::all();
         return view('view', compact('data'));
+        // return $data;
     }
 
     /**
@@ -37,11 +38,17 @@ class UploadController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|mimes:jpg,gif,webp,avif,png|max:5000'
+            'image' => 'required|mimes:jpg,gif,webp,avif,png|max:5000',
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'age' => 'required|numeric'
         ]);
         $file = $request->file('image')->store('image', 'public');
         Upload::create([
-            'file_name' => $file
+            'file_name' => $file,
+            'name' => $request->name,
+            'age' => $request->age,
+            'email' => $request->email
         ]);
 
         return redirect()->route('upload.index')->with('msg', 'Upload successful');

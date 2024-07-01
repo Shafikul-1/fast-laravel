@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('uploads', function (Blueprint $table) {
             $table->id();
             $table->longText('file_name');
+            $table->string('name');
+            $table->string('email');
+            $table->integer('age');
             $table->timestamps();
         });
     }

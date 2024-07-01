@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
-</head>
-
-<body>
+@extends('nav')
+@section('mainPage')
     <div class="h-screen w-full dark:bg-gray-900">
 
         <div class="w-full mx-auto py-10 px-4 md:px-8">
@@ -27,8 +17,11 @@
                             class="absolute inset-0 object-cover w-full h-full -z-10">
                         <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
                         <div class="absolute inset-0 -z-10 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
-
+                        <p class="mb-10 text-2xl text-white">{{$datas->name}}</p>
+                        <p class="mb-10 text-sm text-white">{{$datas->age}}</p>
+                        <sub class="mb-10 text-md text-white">{{$datas->email}}</sub>
                         <div class="flex justify-between">
+                           
                             <a class="text-lg font-semibold leading-6 text-white hover:text-teal-100" href="{{route('upload.edit', $datas->id)}}">UpDate</a>
                             <form action="{{route('upload.destroy', $datas->id)}}" method="post" class="text-lg font-semibold leading-6 text-white hover:text-teal-100">
                                 @csrf
@@ -70,6 +63,4 @@
             </div>
         </div>
     @endif
-</body>
-
-</html>
+@endsection
