@@ -4,16 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Alerthtml extends Component
+class layout extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(public $infoIcon)
+    public function __construct()
     {
-        $this->infoIcon;
+        //
     }
 
     /**
@@ -23,6 +23,6 @@ class Alerthtml extends Component
      */
     public function render()
     {
-        return view('components.alerthtml');
+        return view('components.layout');
     }
 }
