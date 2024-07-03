@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
@@ -15,8 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $getData = User::all();
-        return view('home', compact('getData'));
+        $userdata = User::all();
+        return view('user', compact('userdata'));
     }
 
     /**
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('addUser');
+        return view('createUser');
     }
 
     /**
@@ -37,16 +38,51 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validedData  = $request->validate([
-            'name' => 'required|string',
+        $request->validate([
+            'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed'
         ]);
-        $insert = User::create($validedData);
-        if($insert){
-            return redirect()->route('index')->with('msg', "data insert successful");
-        }else{
-            return redirect()->view('login')->with('msg', "data insert successful");
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
+        return redirect()->route('user.index')->with('msg', "successful account create");
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+        // dd(Auth::attempt($credentials));
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('dashboard')->with('msg', "login successful");
+        } else {
+            return redirect()->route('auth')->with('msg', "login failed");
+        }
+    }
+
+    public function loginPage()
+    {
+        return view('login');
+    }
+
+    public function logout()
+    {
+        if (Auth::check()) {
+            Auth::logout();
+            return redirect()->route('auth')->with('msg', "Logout successful");
+        } 
+    }
+
+    public function dasboard()
+    {
+        if (Auth::check()) {
+            return view('dashboard');
         }
     }
 
