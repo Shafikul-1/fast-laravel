@@ -41,12 +41,14 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'role' => 'required',
             'password' => 'required|confirmed'
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => $request->password
         ]);
         return redirect()->route('user.index')->with('msg', "successful account create");
@@ -73,17 +75,13 @@ class UserController extends Controller
 
     public function logout()
     {
-        if (Auth::check()) {
-            Auth::logout();
-            return redirect()->route('auth')->with('msg', "Logout successful");
-        } 
+        Auth::logout();
+        return redirect()->route('auth')->with('msg', "Logout successful");
     }
 
     public function dasboard()
     {
-        if (Auth::check()) {
-            return view('dashboard');
-        }
+        return view('dashboard');
     }
 
     /**
