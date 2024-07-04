@@ -30,6 +30,10 @@ class UserController extends Controller
         return view('createUser');
     }
 
+    public function check(){
+        return view('check');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -54,7 +58,7 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('msg', "successful account create");
     }
 
-    public function login(Request $request)
+    public function authentecate(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -64,11 +68,11 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('dashboard')->with('msg', "login successful");
         } else {
-            return redirect()->route('auth')->with('msg', "login failed");
+            return redirect()->route('login')->with('msg', "login failed");
         }
     }
 
-    public function loginPage()
+    public function login()
     {
         return view('login');
     }
@@ -76,7 +80,7 @@ class UserController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('auth')->with('msg', "Logout successful");
+        return redirect()->route('login')->with('msg', "Logout successful");
     }
 
     public function dasboard()

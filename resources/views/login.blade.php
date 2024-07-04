@@ -1,6 +1,6 @@
 @extends('main')
 @section('otherContent')
-    <form action="{{route('login')}}"  method="POST" class="max-w-sm mx-auto">
+    <form action="{{route('authentecate')}}"  method="POST" class="max-w-sm mx-auto">
         @csrf
 
         <div class="mb-5">
