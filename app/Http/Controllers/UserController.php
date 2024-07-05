@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -33,11 +34,13 @@ class UserController extends Controller
         return redirect()->route('alluser')->with('msg', 'user added successful');
     }
 
-    public function login(){
+    public function login()
+    {
         return view('login');
     }
 
-    public function adduser(){
+    public function adduser()
+    {
         return view('addUser');
     }
 
@@ -54,7 +57,7 @@ class UserController extends Controller
         }
     }
 
-    public function singleUser( $id)
+    public function singleUser($id)
     {
         $singleUserData = User::find($id);
         return view('singleUser', compact('singleUserData'));
@@ -62,14 +65,25 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        if(Auth::check()){
-            return view('dashboard');
-        } else{
-            return redirect()->route('login')->with('msg', 'login fai9ed');  
-        }
+        // Sort Condition
+        // Gate::authorize('isAdmin');
+        return view('dashboard');
+
+
+        // // Onek boro condition
+        // if (Gate::allows('isAdmin')) {
+        //     return view('dashboard');
+        // } else {
+        //     abort(403);
+        // }
     }
 
-    public function deleteUser( $id)
+    public function loginuser()
+    {
+        // Gate::authorize('isAdmin');
+        return view('loginUser');
+    }
+    public function deleteUser($id)
     {
         $del = User::find($id)->delete();
         if ($del) {
