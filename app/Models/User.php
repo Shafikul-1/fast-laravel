@@ -2,22 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable as AuthAuthenticatable;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends \Illuminate\Foundation\Auth\User // Extend this class
+class User extends Model implements Authenticatable
 {
-    use HasFactory, Notifiable;
+    use AuthAuthenticatable;
+    use HasFactory;
     public $timestamps = false;
     protected $guarded = [];
     protected $hidden = ['password'];
-    protected function password(): Attribute
+    protected function password():Attribute
     {
         return Attribute::make(
-            set: fn (string $value) => bcrypt($value),
+            set: fn (string $value) => bcrypt($value)
         );
     }
 }
