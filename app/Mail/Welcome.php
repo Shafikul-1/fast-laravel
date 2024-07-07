@@ -5,6 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -14,18 +15,18 @@ class Welcome extends Mailable
     use Queueable, SerializesModels;
 
     // public $mails;
-    public $subject;
-    public $messageBody;
+    public $allContent;
+    public $fileName;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($subject, $messageBody)
+    public function __construct($allContent, $fileName)
     {
         // $this->mails = $emails;
-        $this->subject = $subject;
-        $this->messageBody = $messageBody;
+        $this->allContent = $allContent;
+        $this->fileName = $fileName;
     }
 
     /**
@@ -37,7 +38,7 @@ class Welcome extends Mailable
     {
         return new Envelope(
             // subject: 'Welcome',
-            subject: $this->subject,
+            subject: $this->allContent['mailSubject'],
         );
     }
 
@@ -49,7 +50,7 @@ class Welcome extends Mailable
     public function content()
     {
         return new Content(
-            view: 'mail.welcomemail',
+            view: 'mail.sentTestMail',
         );
     }
 
@@ -60,6 +61,12 @@ class Welcome extends Mailable
      */
     public function attachments()
     {
-        return [];
+        $attachment = [];
+        if($this->fileName){
+            $attachment = [
+                Attachment::fromPath(public_path('/' . $this->fileName))
+            ];
+        }
+        return $attachment;
     }
 }
