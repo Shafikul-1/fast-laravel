@@ -51,7 +51,8 @@ class UserController extends Controller
             'password' => 'required'
         ]);
         if (Auth::attempt($credential)) {
-            return redirect()->route('dashboard')->with('msg', 'login successful');
+            // return redirect()->route('dashboard')->with('msg', 'login successful');
+            return redirect()->route('alluser')->with('msg', 'login successful');
         } else {
             return redirect()->route('login')->with('msg', 'login fai9ed');
         }

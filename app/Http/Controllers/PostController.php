@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -13,7 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $postData = Post::where('user_id', Auth::id())->get();
+        return view('post.allpost', compact('postData'));
     }
 
     /**
@@ -23,7 +27,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        if (Gate::any(['isAdmin', 'isManager'])) {
+            return view('post.addpost');
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -34,7 +42,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+        ]);
+        if (Gate::any(['isAdmin', 'isManager'])) {
+            $savePost =  Post::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'user_id' => Auth::id()
+            ]);
+            if ($savePost) {
+                return redirect()->route('post.index')->with('msg', "post added Successful");
+            }
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -45,7 +69,12 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $singlePostData = Post::find($id);
+        $checkUserId = $singlePostData->user_id;
+
+        Gate::authorize('singlePost', [$checkUserId]);
+        // return $singlePostData->user_id;
+        return view('post.singlepost', compact('singlePostData'));
     }
 
     /**
